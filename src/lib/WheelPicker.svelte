@@ -261,6 +261,12 @@ export type DataOption = {value: number|string, label: string}
 
 </script>
 
+<svelte:window 
+     on:mouseup|preventDefault|stopPropagation={releaseWheel}
+     on:touchend|preventDefault|stopPropagation={releaseWheel}
+     on:mousemove|preventDefault|stopPropagation={dragWheel}
+/>
+
 <div class="wheelWindow {classes}" role="button" tabindex="0"
      style="{fillParentStyle};
             padding: {marginY}% 0px;
@@ -271,9 +277,6 @@ export type DataOption = {value: number|string, label: string}
         "
      on:mousedown|preventDefault|stopPropagation={grabWheel}    
      on:touchstart|preventDefault|stopPropagation|nonpassive={grabWheel}
-     on:mouseup|preventDefault|stopPropagation={releaseWheel}
-     on:touchend|preventDefault|stopPropagation={releaseWheel}
-     on:mousemove|preventDefault|stopPropagation={dragWheel}
      on:touchmove|preventDefault|stopPropagation|nonpassive={dragWheel}
      on:mouseenter={() => {if (rollOnHover.enable) hovering = true}}
      on:mouseleave={() => {if (rollOnHover.enable && !mousedown && !touchstart) hovering = false}}
